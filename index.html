@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Kamas</title>
     <style>
         body {
@@ -8,25 +10,29 @@
             font-family: 'Trebuchet MS', sans-serif;
             color: #f2e0b5;
             margin: 0;
-            padding: 0;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
+            box-sizing: border-box;
         }
         h1 {
             color: #f2a65e;
             font-size: 2em;
             margin-bottom: 10px;
+            text-align: center;
         }
         p {
             line-height: 1.2;
             font-size: 1em;
             margin: 2px 0;
+            text-align: center;
         }
         textarea {
-            width: 80%;
+            width: 100%;
+            max-width: 600px;
             height: 150px;
             margin-top: 10px;
             border: 2px solid #f2a65e;
@@ -35,44 +41,52 @@
             background-color: #444;
             color: #f2e0b5;
             font-family: 'Trebuchet MS', sans-serif;
+            box-sizing: border-box;
+        }
+        .small-button, .large-button {
+            background-color: #f2a65e;
+            color: #2e2e2e;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-sizing: border-box;
         }
         .small-button {
-            background-color: #f2a65e;
-            color: #2e2e2e;
-            border: none;
-            padding: 5px 10px;
-            font-size: 0.8em;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .small-button:hover {
-            background-color: #e59446;
+            padding: 2px 5px;
+            font-size: 0.7em;
+            max-width: 100px;
         }
         .large-button {
-            background-color: #f2a65e;
-            color: #2e2e2e;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
+            padding: 15px;
+            font-size: 1.5em;
+            max-width: 200px;
         }
-        .large-button:hover {
+        .small-button:hover, .large-button:hover {
             background-color: #e59446;
         }
         #resultado {
             margin-top: 10px;
             font-size: 1.2em;
             font-weight: bold;
+            text-align: center;
         }
         footer {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
+            margin-top: 20px;
             font-size: 0.8em;
             color: #f2e0b5;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            textarea {
+                height: 100px;
+            }
         }
     </style>
     <script>
@@ -86,12 +100,10 @@
                 total += parseFloat(matches[1].replace(/\./g, ''));
             }
 
-            // Función personalizada para formatear números con separadores de miles
             function formatearNumero(num) {
                 return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             }
 
-            // Formatear el total con separadores de miles
             let totalFormateado = formatearNumero(total);
 
             document.getElementById("resultado").innerText = "El total de kamas es: " + totalFormateado;
